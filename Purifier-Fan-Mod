@@ -1,0 +1,19 @@
+[purifier]
+pin: !PA8
+max_power: 1.0
+tachometer_pin: PA9
+tachometer_ppr: 2
+tachometer_poll_interval: 0.0005
+#enable_pin: PE15
+extra_fan_tach_pin: PA6
+power_det_pin: PA7
+power_det_threshold: 0.88
+
+[fan_generic top_hat_fan]
+pin: PE15
+max_power: 0.35
+shutdown_speed:0 #1.0
+cycle_time: 0.0300
+hardware_pwm: false
+kick_start_time: 1.0
+off_below: 0.0
