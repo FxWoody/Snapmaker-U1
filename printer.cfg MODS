@@ -1,0 +1,153 @@
+### Few mods in  the printer.cfg that you can mod ###
+
+** REPLACE THIS: **
+[gcode_macro SHAKE_Z]
+# gcode:
+#   SAVE_GCODE_STATE NAME=shake_z
+#   G91
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   SET_MAX_Z_ACCEL A=780
+#   SET_MAX_Z_VELOCITY V=50
+#   M204 S5000
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   G0 F3000 Z-0.75
+#   G0 F3000 Z0.75
+#   SET_MAX_Z_ACCEL A=500
+#   SET_MAX_Z_VELOCITY V=30
+#   RESTORE_GCODE_STATE NAME=shake_z
+
+
+WITH THIS :
+
+[gcode_macro SHAKE_Z]
+gcode:
+  SAVE_GCODE_STATE NAME=shake_z
+  G91
+  
+  # Initial shake cycle
+  G0 F3000 Z-0.75
+  G0 F3000 Z0.75
+  
+  # Boost performance limits
+  SET_MAX_Z_ACCEL A=780
+  SET_MAX_Z_VELOCITY V=50
+  M204 S5000
+  
+  # Loop the shake cycle 50 times
+  {% for i in range(50) %}
+    G0 F3000 Z-0.75
+    G0 F3000 Z0.75
+  {% endfor %}
+  
+  # Reset performance limits back to standard
+  SET_MAX_Z_ACCEL A=500
+  SET_MAX_Z_VELOCITY V=30
+  M204 S2000                          ; Adjust 'S2000' to match your default print acceleration
+  
+  RESTORE_GCODE_STATE NAME=shake_z  
