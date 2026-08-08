@@ -122,8 +122,7 @@
 #   SET_MAX_Z_VELOCITY V=30
 #   RESTORE_GCODE_STATE NAME=shake_z
 
-
-WITH THIS :
+** WITH THIS : **
 
 [gcode_macro SHAKE_Z]
 gcode:
